@@ -12,12 +12,13 @@
 
         return api;
 
-        function getAccounts(token) {
-             var url = '/api/link?public_token='+token;
+        function getAccounts(token,useremail) {
+             var url = '/api/link?public_token='+token+'&useremail='+useremail;
             //var url  = '/api/link';
-            return $http.get(url)
+            return $http.put(url)
                 .then(function (response) {
-                    var accounts = response.data;
+                    console.log(response);
+                    var accounts = response;
                     return accounts;
                 });
         }

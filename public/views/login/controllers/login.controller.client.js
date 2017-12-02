@@ -6,19 +6,31 @@
         .module('peanut')
         .controller('LoginController', LoginController);
 
-    function LoginController( $location, $routeParams) {
+    function LoginController( $location, $routeParams, UserService) {
         var model = this;
 
         model.login=login;
 
 
-    function login(username, password) {
+    function login(useremail, password) {
 
             //console.log(searchText);
-            if(username==='user123@user.com' && password==='pass123')
+            UserService.login(useremail, password)
+                .then(loginUser, loginError);
+            /*if(username==='user123@user.com' && password==='pass123')
             {
                 $location.url('/link');
+            }*/
+        }
+    function loginUser(user) {
+            if(user===null){
+                model.message="Wrong credentials";
             }
+            else
+                $location.url('/link/'+user.useremail);
+        }
+    function loginError(err) {
+            model.message = "Something went wrong";
         }
     }
 

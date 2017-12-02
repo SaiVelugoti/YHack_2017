@@ -1,5 +1,6 @@
 var app = require("../express");
-var moment = require('moment')
+var moment = require('moment');
+var userModel = require('../model/user/user.model.server');
 
 const plaid = require('plaid');
 const keys = require("../keys");
@@ -8,17 +9,23 @@ const public_token=null;
 
 const plaidClient = new plaid.Client(keys.client_id, keys.secret, keys.public_key, plaid.environments.sandbox);
 
-app.get('/api/link', getAccounts);
+app.put('/api/link', getAccounts);
 app.get('/api/transactions', getTransactions);
 
 function getAccounts(req, res) {
      var t = req.query["public_token"];
-    //console.log("Hello -> link server");
-    //console.log(req.body);
+     var useremail = req.query["useremail"];
     plaidClient.exchangePublicToken(t).then (rsp1 => {
-        console.log(rsp1.access_token);
+        console.log(rsp1.item_id,rsp1.access_token);
+        return userModel.updateUser(useremail,rsp1.access_token)
+            .then(function (resp) {
+                res.sendStatus(200);
+            },function (err) {
+                res.sendStatus(500);
+            });
+        /*console.log(rsp1.access_token);
         access_token = rsp1.access_token;
-        return res.json(rsp1.access_token);
+        return res.json(rsp1.access_token);*/
     }).catch(err => {
         throw new Error(`Unreachable code block for example: ${err}`);
     });

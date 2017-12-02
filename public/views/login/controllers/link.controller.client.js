@@ -8,6 +8,7 @@
     function LinkController($location, $routeParams,LinkService) {
         var model = this;
 
+        model.useremail=$routeParams.useremail;
         model.linkAccount=linkAccount;
 
         function linkAccount() {
@@ -20,8 +21,8 @@
                 product: ['transactions'],
                 onSuccess: function(token, metadata) {
 
-                    model.access_token = LinkService.getAccounts(token);
-                    console.log(model.access_token);
+                    LinkService.getAccounts(token,model.useremail);
+                    //console.log(model.access_token);
                 },
                 onExit: function(err, metadata) {
                     if (err != null) {

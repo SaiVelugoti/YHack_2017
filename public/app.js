@@ -11,7 +11,7 @@
                 controllerAs: 'model'
 
             })
-            .when('/link', {
+            .when('/link/:useremail', {
                 templateUrl: './views/login/templates/link.view.client.html',
                 controller: 'LinkController',
                 controllerAs: 'model'

@@ -8,7 +8,9 @@
     "angular-route": "^1.6.6",
     "express": "^4.15.5",
     "moment": "^2.19.3",
-    "plaid": "^2.2.0"
+    "mongoose": "^4.13.5",
+    "plaid": "^2.2.0",
+    "q": "^1.5.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

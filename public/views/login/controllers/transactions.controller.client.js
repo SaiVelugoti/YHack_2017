@@ -6,7 +6,6 @@
     function TransactionController($location, $routeParams, LinkService) {
         var model = this;
 
-        model.transactions = transactions;
         LinkService.getTransactions().then(render, errorUser);
 
         function render(data) {
