@@ -3,6 +3,9 @@
  */
 
 var app = require('./express');
+
+require("./app");
+
 //var passport      = require('passport');
 //var cookieParser  = require('cookie-parser');
 //var session       = require('express-session');

@@ -4,18 +4,22 @@
 (function () {
     angular
         .module('peanut')
-        .controller('UserHomeController', UserHomeController);
+        .controller('LoginController', LoginController);
 
-    function UserHomeController( $location, $routeParams) {
+    function LoginController( $location, $routeParams) {
         var model = this;
 
-        model.redirectToSearchResults=redirectToSearchResults;
+        model.login=login;
 
 
-    function redirectToSearchResults(searchText) {
+    function login(username, password) {
 
-        console.log(searchText);
-    }
+            //console.log(searchText);
+            if(username==='user123@user.com' && password==='pass123')
+            {
+                $location.url('/link');
+            }
+        }
     }
 
 

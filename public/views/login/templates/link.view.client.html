@@ -1,0 +1,40 @@
+<a class="btn btn-primary btn-block"
+   ng-click="model.linkAccount()">Link Account</a>
+<!--<button id="link-button">Link Account</button>-->
+
+<!--<script type="text/javascript">
+    console.log('hello');
+        var handler = function(){
+            console.log(Plaid);
+            Plaid.create({
+            clientName: 'Plaid Walkthrough Demo',
+            env: 'sandbox',
+            key: 'f504c4778357c1513d4dc0675f5ca9', // Replace with your public_key to test with live credentials
+            product: ['transactions'],
+            //webhook: 'https://requestb.in', // Optional – use webhooks to get transaction and error updates
+            onSuccess: function(public_token, metadata) {
+                // Send the public_token to your app server.
+                // The metadata object contains info about the institution the
+                // user selected and the account ID, if the Account Select view
+                // is enabled.
+
+                $.post('/link', {
+                    public_token: public_token
+                });
+            },
+            onExit: function(err, metadata) {
+                // The user exited the Link flow.
+                if (err != null) {
+                    // The user encountered a Plaid API error prior to exiting.
+                }
+                // metadata contains information about the institution
+                // that the user selected and the most recent API request IDs.
+                // Storing this information can be helpful for support.
+            }
+        });}
+
+//        $('#link-button').click(function(e) {
+//            console.log("bhjbj");
+//            handler();
+//        });
+</script>-->

@@ -1,0 +1,1 @@
+require('./services/link.server.service');
