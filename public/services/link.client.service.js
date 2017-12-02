@@ -6,7 +6,8 @@
     function LinkService($http) {
 
         var api ={
-            getAccounts : getAccounts
+            getAccounts : getAccounts,
+            getTransactions : getTransactions
         };
 
         return api;
@@ -16,6 +17,16 @@
             //var url  = '/api/link';
             return $http.get(url)
                 .then(function (response) {
+                    var accounts = response.data;
+                    return accounts;
+                });
+        }
+        function getTransactions(token) {
+            var url = '/api/transactions/';
+            //var url  = '/api/link';
+            return $http.get(url)
+                .then(function (response) {
+                    console.log('jh'+response.data);
                     var accounts = response.data;
                     return accounts;
                 });

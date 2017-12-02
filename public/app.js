@@ -17,5 +17,11 @@
                 controllerAs: 'model'
 
             })
+            .when('/transactions', {
+                templateUrl: './views/login/templates/transactions.view.client.html',
+                controller: 'TransactionController',
+                controllerAs: 'model'
+
+            })
     }
 }) ();
