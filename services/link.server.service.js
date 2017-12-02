@@ -35,8 +35,8 @@ function getAccounts(req, res) {
             var categories_Main = cat.filter(x => (parseInt(x.category_id)%1000000 == 0)); // 13
             var categories_second_level = cat.filter(x => (parseInt(x.category_id)%1000 == 0)); // 261
 
-            console.log(categories_Main.length);
-            console.log(categories_second_level.length);
+            console.log(categories_Main);
+            console.log(categories_second_level);
             // console.log(cat[1]);
             // console.log(categories_second_level);
 
@@ -45,7 +45,9 @@ function getAccounts(req, res) {
         // --- Get Transactions
         const now = moment();
         const today = now.format('YYYY-MM-DD');
-        const startDate = now.subtract(3650, 'days').format('YYYY-MM-DD');
+        const startDate = now.subtract(3650, 'days').format('' +
+            '' +
+            'YYYY-MM-DD');
 
         plaidClient.getTransactions(accessToken, startDate, today, (err, res) => {
             // console.log("Transactions successful");
