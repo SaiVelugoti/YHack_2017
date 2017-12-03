@@ -1,4 +1,6 @@
 node_modules
+.DS_Store
 .idea
 keys.js
 package-lock.json
+
