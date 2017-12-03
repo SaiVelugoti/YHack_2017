@@ -22,14 +22,12 @@
                     return accounts;
                 });
         }
-        function getTransactions(token) {
-            var url = '/api/transactions/';
+        function getTransactions(useremail) {
+            var url = '/api/transactions?useremail='+useremail;
             //var url  = '/api/link';
             return $http.get(url)
                 .then(function (response) {
-                    console.log('jh'+response.data);
-                    var accounts = response.data;
-                    return accounts;
+                    return response;
                 });
         }
     }

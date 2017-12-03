@@ -5,8 +5,9 @@
 
     function TransactionController($location, $routeParams, LinkService) {
         var model = this;
+        model.useremail=$routeParams.useremail;
 
-        LinkService.getTransactions().then(render, errorUser);
+        LinkService.getTransactions(model.useremail).then(render, errorUser);
 
         function render(data) {
             console.log("In render() controller");
