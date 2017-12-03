@@ -3,12 +3,17 @@
         .module('peanut')
         .controller('LinkController', LinkController);
 
-
-
-    function LinkController($location, $routeParams,LinkService) {
+    function LinkController($location, $routeParams,LinkService, $scope) {
         var model = this;
-
         model.useremail=$routeParams.useremail;
+
+        $scope.labels = ['Food & Drinks', 'Shopping', 'Travel', 'Payment', 'Transfer'];
+        $scope.series = ['Me', 'My peers'];
+        $scope.data = [
+            [10, 59, 80, 81, 220],
+            [28, 48, 40, 19, 86]
+        ];
+
         model.linkAccount=linkAccount;
 
         function linkAccount() {

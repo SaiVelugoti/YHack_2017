@@ -6,3 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
+
+.logindiv{
+  background-color: powderblue;
+  height: 200px;
+  width: 50%;
+}
+#parent_div_1, #parent_div_2, #parent_div_3 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+  margin-right: 10px;
+  float: left;
+}
+.child_div_1 {
+  float: left;
+  margin-right: 5px;
+}

@@ -1,44 +1,54 @@
-<a class="btn btn-primary btn-block"
-   ng-click="model.linkAccount()">Link Account</a>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand proj-navbar-font proj-navbar-heading" ng-href="#!/" ><b>Peanut</b></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#!/login"> <b class="proj-navbar-color proj-navbar-font">Welcome {{model.useremail}}! </b> </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<a class="btn btn-primary btn-block"
-   href="#!/transactions">View Transactions</a>
+<div class="container-fluid" style="padding-top: 50px">
+    <!--<div style="width:800px;">
+        <div style="width:300px; float:left;background-color: #1b6d85">
+            <h1>jdkbck</h1>
+        </div>
+        <div style="width:300px; float:right;background-color: #2b669a">
+            <h1>ejhdvhj</h1>
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="col-sm-6">
+            <h1 style="font-family: monospace;padding-left: 20%">Expenditure Trends&nbsp<i class="fa fa-line-chart fa-1x" aria-hidden="true"></i></h1>
+            <div style="padding-top: 10%">
+                <a href=""><h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-glass fa-1x" aria-hidden="true"></i>&nbspFood and Drinks</h2></a>
+                <h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbspShopping</h2>
+                <h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-car" aria-hidden="true"></i>&nbspTravel</h2>
+                <h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbspPayment</h2>
+                <h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-money" aria-hidden="true"></i>&nbspTransfer</h2>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <h1 style="font-family: monospace;padding-left: 20%">Your monthly expenditure</h1>
+                <!--<a class="btn btn-primary btn-block"
+                   href="#!/transactions/{{model.useremail}}">View Transactions</a>-->
+                <div style="padding-top: 14%">
+                    <canvas  id="bar" class="chart chart-bar"
+                            chart-data="data" chart-labels="labels" chart-series="series">
+                    </canvas>
+                    <a class="btn btn-primary btn-block"
+                       ng-click="model.linkAccount()">Link Account</a>
+                </div>
+                <!--<div>
 
-<!--<button id="link-button">Link Account</button>-->
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
 
-<!--<script type="text/javascript">
-    console.log('hello');
-        var handler = function(){
-            console.log(Plaid);
-            Plaid.create({
-            clientName: 'Plaid Walkthrough Demo',
-            env: 'sandbox',
-            key: 'f504c4778357c1513d4dc0675f5ca9', // Replace with your public_key to test with live credentials
-            product: ['transactions'],
-            //webhook: 'https://requestb.in', // Optional – use webhooks to get transaction and error updates
-            onSuccess: function(public_token, metadata) {
-                // Send the public_token to your app server.
-                // The metadata object contains info about the institution the
-                // user selected and the account ID, if the Account Select view
-                // is enabled.
 
-                $.post('/link', {
-                    public_token: public_token
-                });
-            },
-            onExit: function(err, metadata) {
-                // The user exited the Link flow.
-                if (err != null) {
-                    // The user encountered a Plaid API error prior to exiting.
-                }
-                // metadata contains information about the institution
-                // that the user selected and the most recent API request IDs.
-                // Storing this information can be helpful for support.
-            }
-        });}
-
-//        $('#link-button').click(function(e) {
-//            console.log("bhjbj");
-//            handler();
-//        });
-</script>-->

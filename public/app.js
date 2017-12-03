@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('peanut', ['ngRoute'])
+        .module('peanut', ['ngRoute','chart.js'])
         .config(Config);
 
     function Config($routeProvider) {
@@ -20,6 +20,12 @@
             .when('/transactions', {
                 templateUrl: './views/login/templates/transactions.view.client.html',
                 controller: 'TransactionController',
+                controllerAs: 'model'
+
+            })
+            .when('/register', {
+                templateUrl: './views/login/templates/register.view.client.html',
+                controller: 'RegisterController',
                 controllerAs: 'model'
 
             })
