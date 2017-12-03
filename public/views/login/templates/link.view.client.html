@@ -21,17 +21,29 @@
         </div>
     </div>-->
     <div class="row">
-        <div class="col-sm-6">
-            <h1 style="font-family: monospace;padding-left: 20%">Expenditure Trends&nbsp<i class="fa fa-line-chart fa-1x" aria-hidden="true"></i></h1>
-            <div style="padding-top: 10%">
-                <a href=""><h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-glass fa-1x" aria-hidden="true"></i>&nbspFood and Drinks</h2></a>
-                <h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbspShopping</h2>
-                <h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-car" aria-hidden="true"></i>&nbspTravel</h2>
-                <h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbspPayment</h2>
-                <h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-money" aria-hidden="true"></i>&nbspTransfer</h2>
-            </div>
+        <div class="col-sm-6" ng-show="model.flag==='r'">
+            <h1 style="font-family: monospace;padding-left: 20%">Nothing to show. Please link your bank Account first!</h1>
         </div>
         <div class="col-sm-6">
+            <h1 ng-show="model.flag==='l'" style="font-family: monospace;padding-left: 20%;padding-bottom: 12%">Expenditure Trends&nbsp<i class="fa fa-line-chart fa-1x" aria-hidden="true"></i></h1>
+            <div ng-show="model.flag==='l'" ng-repeat="category in model.useravg">
+                <a href="">
+                    <h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-glass fa-1x" aria-hidden="true"></i>&nbsp{{category._id}}&nbsp<i ng-show="model.dict[category._id]>=0" style="color: green" class="fa fa-arrow-up" aria-hidden="true">+${{model.dict[category._id]}}</i><i ng-show="model.dict[category._id]<0" style="color: red" class="fa fa-arrow-down" aria-hidden="true">-${{model.dict[category._id]}}</i>&nbsp;</h2>
+                </a>
+            </div>
+            <!--<div ng-show="model.flag==='l'" style="padding-top: 10%">
+                <a href=""><h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-glass fa-1x" aria-hidden="true"></i>&nbspFood and Drinks&nbsp<i style="color: green" class="fa fa-arrow-up" aria-hidden="true"></i><i style="color: red" class="fa fa-arrow-down" aria-hidden="true"></i></h2> </a>
+                <a href=""><h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbspShopping&nbsp<i style="color: green" class="fa fa-arrow-up" aria-hidden="true"></i><i style="color: red" class="fa fa-arrow-down" aria-hidden="true"></i></h2></a>
+                <a href=""><h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-car" aria-hidden="true"></i>&nbspTravel&nbsp<i style="color: green" class="fa fa-arrow-up" aria-hidden="true"></i><i style="color: red" class="fa fa-arrow-down" aria-hidden="true"></i></h2></a>
+                <a href=""><h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbspPayment&nbsp<i style="color: green" class="fa fa-arrow-up" aria-hidden="true"></i><i style="color: red" class="fa fa-arrow-down" aria-hidden="true"></i></h2></a>
+                <a href=""><h2 style="font-family: monospace;padding-left: 25%"><i class="fa fa-money" aria-hidden="true"></i>&nbspTransfer&nbsp<i style="color: green" class="fa fa-arrow-up" aria-hidden="true"></i><i style="color: red" class="fa fa-arrow-down" aria-hidden="true"></i></h2></a>
+            </div>-->
+            <div style="padding-top: 8%">
+                <a style="height: 50%" class="btn btn-primary btn-block"
+                   ng-click="model.linkAccount()">Link Account</a>
+            </div>
+        </div>
+        <div class="col-sm-6" ng-show="model.flag==='l'">
             <div>
                 <h1 style="font-family: monospace;padding-left: 20%">Your monthly expenditure</h1>
                 <!--<a class="btn btn-primary btn-block"
@@ -40,8 +52,7 @@
                     <canvas  id="bar" class="chart chart-bar"
                              chart-data="data" chart-labels="labels" chart-series="series">
                     </canvas>
-                    <a class="btn btn-primary btn-block"
-                       ng-click="model.linkAccount()">Link Account</a>
+
                 </div>
                 <!--<div>
 

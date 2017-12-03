@@ -6,6 +6,8 @@ var transactionModel = mongoose.model("transactionModel", transactionSchema);
 transactionModel.addTransactions = addTransactions;
 transactionModel.getTransactions = getTransactions;
 transactionModel.findTransactionIdsByEmail = findTransactionIdsByEmail;
+transactionModel.findOverAllAvgExpenses = findOverAllAvgExpenses;
+transactionModel.findSingleAvgExpenses = findSingleAvgExpenses;
 
 module.exports = transactionModel;
 //
@@ -57,4 +59,37 @@ function addTransactions(useremail, newTransactions) {
             createTransaction(useremail, newTransactions[i]);
         }
     }
+}
+function findOverAllAvgExpenses() {
+    return transactionModel.aggregate(
+        [{$group: {_id: "$category_main", AvgAll: { $avg: '$amount'}}}])
+        .then(function (res) {
+            return res;
+        });
+        /*function (err, result) {
+            if(err){
+                console.error(err);
+            } else {
+                return result.json();
+            }
+        }
+    )*/
+}
+
+function findSingleAvgExpenses(user_email) {
+    return transactionModel.aggregate(
+        [{$match: {_useremail: user_email}},
+            {$group: {_id: "$category_main",
+                AvgOne: { $avg: '$amount'}}}])
+        .then(function (res) {
+            return res;
+        });
+        /*function (err, result) {
+            if(err){
+                console.error(err);
+            } else {
+                return result;
+            }
+        }
+    )*/
 }

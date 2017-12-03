@@ -7,7 +7,9 @@
 
         var api ={
             getAccounts : getAccounts,
-            getTransactions : getTransactions
+            getTransactions : getTransactions,
+            findOverAllAvgExpenses : findOverAllAvgExpenses,
+            findSingleAvgExpenses : findSingleAvgExpenses
         };
 
         return api;
@@ -28,6 +30,22 @@
             return $http.get(url)
                 .then(function (response) {
                     return response;
+                });
+        }
+
+        function findOverAllAvgExpenses() {
+            var url = '/api/overallexpenses';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findSingleAvgExpenses(useremail) {
+            var url = '/api/singleexpense?useremail='+useremail;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
                 });
         }
     }

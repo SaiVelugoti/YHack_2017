@@ -29,7 +29,7 @@
                 model.message="Something went wrong!";
             }
             else
-                $location.url('/link/'+model.useremail);
+                $location.url('/link/r/'+model.useremail);
         }
         function registerError(err) {
             model.message = "Something went wrong!";

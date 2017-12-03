@@ -27,7 +27,7 @@
                 model.message="Wrong credentials";
             }
             else
-                $location.url('/link/'+user.useremail);
+                $location.url('/link/l/'+user.useremail);
         }
     function loginError(err) {
             model.message = "Something went wrong";

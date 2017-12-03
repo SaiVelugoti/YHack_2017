@@ -8,10 +8,16 @@ const keys = require("../keys");
 var access_token = "";
 const public_token = null;
 
-const plaidClient = new plaid.Client(keys.client_id, keys.secret, keys.public_key, plaid.environments.sandbox);
+const client_id=process.env.CLIENT_ID || keys.client_id;
+const secret=process.env.SECRET || keys.secret;
+const public_key=process.env.PUBLIC_KEY || keys.public_key;
+
+const plaidClient = new plaid.Client(client_id, secret, public_key, plaid.environments.sandbox);
 
 app.put('/api/link', getAccounts);
 app.get('/api/transactions', getTransactions);
+app.get('/api/overallexpenses', findOverAllAvgExpenses);
+app.get('/api/singleexpense', findSingleAvgExpenses);
 // app.put('/api/linkPlaid', getAccountsFromPlaid);
 
 // function getAccounts(req, res) {
@@ -144,20 +150,20 @@ function getAccounts(req, res) {
         accessToken = rsp1.access_token;
         const now = moment();
         const today = now.format('YYYY-MM-DD');
-        const thirtyDaysAgo = now.subtract(30, 'days').format('YYYY-MM-DD');
+        const thirtyDaysAgo = now.subtract(365, 'days').format('YYYY-MM-DD');
         plaidClient.getTransactions(accessToken, thirtyDaysAgo, today)
             .then(respPlaid => {
-                console.log(respPlaid.transactions);
+                //console.log(respPlaid.transactions);
                 transactionModel.addTransactions(useremail, respPlaid.transactions);
             }).catch(err => {
             console.log(err);
-            throw new Error(`Unreachable code block for example: ${err}`);
+            //throw new Error(`Unreachable code block for example: ${err}`);
         });
         res.sendStatus(200);
     }, function (err) {
         res.sendStatus(500);
     }).catch(err => {
-        throw new Error(`Unreachable code block for example: ${err}`);
+        // throw new Error(`Unreachable code block for example: ${err}`);
     });
 }
 function getTransactions(req, res) {
@@ -165,5 +171,20 @@ function getTransactions(req, res) {
    return transactionModel.getTransactions(useremail)
         .then(function (transactionsRetrieved) {
             res.json(transactionsRetrieved);
+        });
+}
+
+function findOverAllAvgExpenses(req, res) {
+    return transactionModel.findOverAllAvgExpenses()
+        .then(function (overallavg) {
+            res.json(overallavg);
+        });
+}
+
+function findSingleAvgExpenses(req, res) {
+    var email=req.query["useremail"];
+    return transactionModel.findSingleAvgExpenses(email)
+        .then(function (singleavg) {
+            res.json(singleavg);
         });
 }
