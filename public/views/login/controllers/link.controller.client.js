@@ -3,7 +3,7 @@
         .module('peanut')
         .controller('LinkController', LinkController);
 
-    function LinkController($location, $routeParams,LinkService, $scope) {
+    function LinkController($location, $routeParams,LinkService, $scope,$route) {
         var model = this;
         model.useremail=$routeParams.useremail;
         model.flag=$routeParams.flag;
@@ -39,7 +39,7 @@
                         model.flag='l';
                     LinkService.findOverAllAvgExpenses().then(renderPeers,error);
                     LinkService.findSingleAvgExpenses(model.useremail).then(renderUser,error);
-
+                    $location.url('/link/l/'+model.useremail);
                     //console.log(model.access_token);
                 },
                 onExit: function(err, metadata) {
