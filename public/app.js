@@ -17,7 +17,7 @@
                 controllerAs: 'model'
 
             })
-            .when('/transactions', {
+            .when('/transactions/:useremail', {
                 templateUrl: './views/login/templates/transactions.view.client.html',
                 controller: 'TransactionController',
                 controllerAs: 'model'
